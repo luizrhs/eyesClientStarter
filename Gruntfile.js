@@ -32,9 +32,14 @@ module.exports = function(grunt) {
 			'e2e'      : ['test/e2e/**/*Spec.js'],
 			'less'     : ['src/styles/**/*.less'],
 			'html'     : ['src/index.html'],
-			'templates': ['src/templates/**/*.html']
+			'templates': ['src/templates/**/*.html'],
+			'karma'    : {
+				'unit': 'config/karma.conf.js',
+				'e2e' : 'config/karma.e2e.conf.js'
+			}
 		},
 
+		/* jshint task */
 		/* Hinting your Javascript is always nice. Don't skip it! */
 		jshint: {
 			globals: {
@@ -55,22 +60,47 @@ module.exports = function(grunt) {
 			files: ['<%= files.app %>', '<%= files.unit %>', '<%= files.e2e %>', 'Gruntfile.js']
 		},
 
+		/* less task */
 		/* Instead of concatenating .less files, you can use the `@import` statament at the main.less */
 		/* It helps things stay clear */
 		less: {
-			default: {
+			defaults: {
 				files: {
 					'src/styles/dist/main.css': 'src/styles/main.less'
 				}
 			}
 		},
 
-		/* Generates an optimized Javascript file for production */
+		/* uglify task */
+		/* Generates an optimized Javascript file for production. */
 		uglify: {
-			default: {
+			defaults: {
 				files: {
 					'src/app/application.min.js': ['<%= files.app %>']
 				}	
+			}
+		},
+
+
+		/* karma task */
+		/* Karma spec runner. */
+		karma: {
+			unit: {
+				configFile: '<%= files.karma.unit %>'
+			},
+			e2e: {
+				configFile: '<%= files.karma.e2e %>'
+			}
+		},
+
+		watch: {
+			less: {
+				files: ['<%= files.less %>'],
+				tasks: ['less']
+			},
+			jshint: {
+				files: ['<%= files.app %>'],
+				tasks: ['jshint']
 			}
 		}
 
