@@ -1,0 +1,15 @@
+{
+    "name": "eyes20ClientStarter",
+    "version": "0.0.1",
+    "description": "Seed project for developing rich client-side applications",
+    "dependencies": {
+	},
+	"devDependencies": {
+		"grunt"               : "*",
+		"grunt-karma"         : "*",
+		"grunt-contrib-less"  : "*",
+		"grunt-contrib-watch" : "*",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-jshint": "*"
+	}
+}
