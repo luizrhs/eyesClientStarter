@@ -86,7 +86,10 @@ module.exports = function(grunt) {
 		karma: {
 			unit: {
 				configFile: '<%= files.karma.unit %>'
-			}
+			},
+            e2e: {
+                configFile: '<%= files.karma.e2e %>'
+            }
 		},
 
 		cssmin: {
