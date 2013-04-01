@@ -17,7 +17,6 @@ module.exports = function(grunt) {
 
 	/* JsHint */
 	grunt.loadNpmTasks('grunt-contrib-jshint');
-
 	/* CssMin */
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
@@ -39,7 +38,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		/* jshint task */
 		/* Hinting your Javascript is always nice. Don't skip it! */
 		jshint: {
 			globals: {
@@ -60,7 +58,6 @@ module.exports = function(grunt) {
 			files: ['<%= files.app %>', '<%= files.unit %>', '<%= files.e2e %>', 'Gruntfile.js']
 		},
 
-		/* less task */
 		/* Instead of concatenating .less files, you can use the `@import` statament at the main.less */
 		/* It helps things stay clear */
 		less: {
@@ -71,7 +68,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		/* uglify task */
 		/* Generates an optimized Javascript file for production. */
 		uglify: {
 			defaults: {
@@ -82,7 +78,6 @@ module.exports = function(grunt) {
 		},
 
 
-		/* karma task */
 		/* Karma spec runner. */
 		karma: {
 			unit: {
@@ -93,7 +88,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		/* watch task */
 		watch: {
 			less: {
 				files: ['<%= files.less %>'],
@@ -108,4 +102,5 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('build', ['uglify', 'cssmin']);
 	grunt.registerTask('init', ['less', 'jshint', 'watch']);
+	
 };
