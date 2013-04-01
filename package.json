@@ -1,5 +1,5 @@
 {
-    "name": "eyes20ClientStarter",
+    "name": "eyesClientStarter",
     "version": "0.0.1",
     "description": "Seed project for developing rich client-side applications",
     "dependencies": {
