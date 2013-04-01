@@ -1,4 +1,4 @@
-# 20ClientStarter
+# eyes20ClientStarter
 ### Seed project for developing rich client-side applications.
 ________________
 It depends on grunt to run it's tasks. There are not so many tasks, so go take a look at the `Gruntfile.js` in the root directory.
