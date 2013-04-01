@@ -17,8 +17,12 @@ module.exports = function(grunt) {
 
 	/* JsHint */
 	grunt.loadNpmTasks('grunt-contrib-jshint');
+
 	/* CssMin */
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+
+	/* Concat */
+	grunt.loadNpmTasks('grunt-contrib-concat');
 
 
 	grunt.initConfig({
@@ -55,7 +59,7 @@ module.exports = function(grunt) {
 				'beforeEach': true,
 				'afterEach' : true
 			},
-			files: ['<%= files.app %>', '<%= files.unit %>', '<%= files.e2e %>', 'Gruntfile.js']
+			files: ['<%= files.app %>', '<%= files.unit %>', '<%= files.e2e %>', 'Gruntfile.js', '!src/app/vendor/*']
 		},
 
 		/* Instead of concatenating .less files, you can use the `@import` statament at the main.less */
@@ -63,7 +67,7 @@ module.exports = function(grunt) {
 		less: {
 			defaults: {
 				files: {
-					'src/styles/dist/main.css': 'src/styles/main.less'
+					'src/dist/main.css': 'src/styles/main.less'
 				}
 			}
 		},
@@ -72,7 +76,7 @@ module.exports = function(grunt) {
 		uglify: {
 			defaults: {
 				files: {
-					'src/app/application.min.js': ['<%= files.app %>']
+					'src/dist/application.min.js': 'src/dist/applicaiton.js'
 				}	
 			}
 		},
@@ -88,11 +92,33 @@ module.exports = function(grunt) {
 			}
 		},
 
+		cssmin: {
+			compress: {
+				files: {
+					'src/dist/main.min.css': 'src/dist/main.css'
+				}
+			}
+		},
+
+		concat: {
+			options: {
+				separator: ";"
+			},
+			dist: {
+				src: ['<%= files.app %>', '!src/app/vendor/*'],
+				dest: 'src/dist/application.js'
+			}
+		},
+
 		watch: {
 			less: {
 				files: ['<%= files.less %>'],
 				tasks: ['less']
 			},
+			concat: {
+				files: ['<%= files.app %>'],
+				tasks: ['concat']
+			}
 			jshint: {
 				files: ['<%= files.app %>'],
 				tasks: ['jshint']
@@ -100,7 +126,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('build', ['uglify', 'cssmin']);
+	grunt.registerTask('build', ['less', 'uglify', 'cssmin']);
 	grunt.registerTask('init', ['less', 'jshint', 'watch']);
-	
+
 };
