@@ -74,9 +74,9 @@ module.exports = function(grunt) {
 
 		/* Generates an optimized Javascript file for production. */
 		uglify: {
-			defaults: {
+			target: {
 				files: {
-					'src/dist/application.min.js': 'src/dist/applicaiton.js'
+					'src/dist/application.min.js': ['src/dist/applicaiton.js']
 				}	
 			}
 		},
@@ -115,18 +115,13 @@ module.exports = function(grunt) {
 				files: ['<%= files.less %>'],
 				tasks: ['less']
 			},
-			concat: {
+			app: {
 				files: ['<%= files.app %>'],
-				tasks: ['concat']
-			}
-			jshint: {
-				files: ['<%= files.app %>'],
-				tasks: ['jshint']
+				tasks: ['concat', 'jshint']
 			}
 		}
 	});
 
-	grunt.registerTask('build', ['less', 'uglify', 'cssmin']);
-	grunt.registerTask('init', ['less', 'jshint', 'watch']);
+	grunt.registerTask('init', ['less', 'concat', 'jshint', 'watch']);
 
 };
