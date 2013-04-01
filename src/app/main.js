@@ -1,1 +1,1 @@
-var a = 10;
+window.eyes = angular.module('eyes');
