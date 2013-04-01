@@ -93,6 +93,7 @@ module.exports = function(grunt) {
 			}
 		},
 
+		/* watch task */
 		watch: {
 			less: {
 				files: ['<%= files.less %>'],
@@ -103,6 +104,8 @@ module.exports = function(grunt) {
 				tasks: ['jshint']
 			}
 		}
-
 	});
+
+	grunt.registerTask('build', ['uglify', 'cssmin']);
+	grunt.registerTask('init', ['less', 'jshint', 'watch']);
 };
